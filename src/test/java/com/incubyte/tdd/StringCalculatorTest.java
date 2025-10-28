@@ -40,6 +40,16 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void supportsMultiCharDelimiter() {
+        assertEquals(6, calc.add("//[***]\n1***2***3"));
+    }
+
+    @Test
+    void supportsMultipleDelimiters() {
+        assertEquals(6, calc.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
     void throwsExceptionForNegatives() {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
             calc.add("1,-2,3,-5");
